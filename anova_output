@@ -1,0 +1,184 @@
+$ANOVA (!! partial)
+               Effect DFn DFd          SSn       SSd            F            p p<.05         ges
+1         (Intercept)   1  24 5.408653e+01 0.8028332 1.616870e+03 1.555640e-23     * 0.965951301
+2           vib_style   2  48 6.723009e-02 0.4619610 3.492767e+00 3.835544e-02     * 0.034062631
+3           placement   1  24 7.038916e-04 0.3176692 5.317921e-02 8.195752e-01       0.000369072
+4 vib_style:placement   2  48 2.911324e-03 0.3240262 2.156362e-01 8.068050e-01       0.001524732
+
+$`Mauchly's Test for Sphericity`
+               Effect         W          p p<.05
+2           vib_style 0.8388595 0.13256407      
+4 vib_style:placement 0.7884132 0.06496355      
+
+$`Sphericity Corrections`
+               Effect       GGe      p[GG] p[GG]<.05       HFe      p[HF] p[HF]<.05
+2           vib_style 0.8612222 0.04609598         * 0.9215802 0.04255312         *
+4 vib_style:placement 0.8253639 0.76466636           0.8785117 0.77863841          
+
+
+
+$`Mauchly's Test for Sphericity`
+               Effect         W          p p<.05
+2           vib_style 0.8388595 0.13256407      
+4 vib_style:placement 0.7884132 0.06496355      
+
+$`Sphericity Corrections`
+               Effect       GGe      p[GG] p[GG]<.05       HFe      p[HF] p[HF]<.05
+2           vib_style 0.8612222 0.04609598         * 0.9215802 0.04255312         *
+4 vib_style:placement 0.8253639 0.76466636           0.8785117 0.77863841          
+
+
+
+============================================================================================
+full anova
+
+$ANOVA
+                        Effect DFn DFd          F            p p<.05          ges
+2                    placement   1  24  0.1518592 7.002017e-01       0.0004923703
+3                    vib_style   2  48  4.2108579 2.065755e-02     * 0.0203478659
+4                     contrast   2  48 15.3951769 6.830248e-06     * 0.0360987184
+5          placement:vib_style   2  48  0.1548586 8.569624e-01       0.0005578557
+6           placement:contrast   2  48  1.4779170 2.383064e-01       0.0060764260
+7           vib_style:contrast   4  96  1.0789546 3.713022e-01       0.0071243512
+8 placement:vib_style:contrast   4  96  0.1071168 9.797791e-01       0.0009365031
+
+$`Mauchly's Test for Sphericity`
+                        Effect         W          p p<.05
+3                    vib_style 0.9225011 0.39547521      
+4                     contrast 0.9733402 0.73289800      
+5          placement:vib_style 0.7752130 0.05349859      
+6           placement:contrast 0.9750321 0.74768322      
+7           vib_style:contrast 0.5054988 0.08409702      
+8 placement:vib_style:contrast 0.6980266 0.52959292      
+
+$`Sphericity Corrections`
+                        Effect       GGe        p[GG] p[GG]<.05       HFe        p[HF] p[HF]<.05
+3                    vib_style 0.9280752 2.354044e-02         * 1.0026206 2.065755e-02         *
+4                     contrast 0.9740325 8.628948e-06         * 1.0589008 6.830248e-06         *
+5          placement:vib_style 0.8164685 8.144252e-01           0.8678705 8.276987e-01          
+6           placement:contrast 0.9756403 2.386587e-01           1.0608783 2.383064e-01          
+7           vib_style:contrast 0.7327673 3.627953e-01           0.8457563 3.671017e-01          
+8 placement:vib_style:contrast 0.8531912 9.680627e-01           1.0117813 9.797791e-01          
+
+$aov
+
+Call:
+aov(formula = formula(aov_formula), data = data)
+
+Grand Mean: 0.599955
+
+Stratum 1: pID
+
+Terms:
+                Residuals
+Sum of Squares   2.404077
+Deg. of Freedom        24
+
+Residual standard error: 0.3164963
+
+Stratum 2: pID:placement
+
+Terms:
+                placement Residuals
+Sum of Squares  0.0062342 0.9852647
+Deg. of Freedom         1        24
+
+Residual standard error: 0.2026146
+8 out of 9 effects not estimable
+Estimated effects are balanced
+
+Stratum 3: pID:vib_style
+
+Terms:
+                vib_style Residuals
+Sum of Squares  0.2628596 1.4981819
+Deg. of Freedom         2        48
+
+Residual standard error: 0.1766695
+10 out of 12 effects not estimable
+Estimated effects may be unbalanced
+
+Stratum 4: pID:contrast
+
+Terms:
+                 contrast Residuals
+Sum of Squares  0.4739539 0.7388609
+Deg. of Freedom         2        48
+
+Residual standard error: 0.1240683
+10 out of 12 effects not estimable
+Estimated effects may be unbalanced
+
+Stratum 5: pID:placement:vib_style
+
+Terms:
+                placement:vib_style Residuals
+Sum of Squares            0.0070638 1.0947550
+Deg. of Freedom                   2        48
+
+Residual standard error: 0.1510212
+4 out of 6 effects not estimable
+Estimated effects may be unbalanced
+
+Stratum 6: pID:placement:contrast
+
+Terms:
+                placement:contrast Residuals
+Sum of Squares           0.0773699 1.2564156
+Deg. of Freedom                  2        48
+
+Residual standard error: 0.1617879
+4 out of 6 effects not estimable
+Estimated effects may be unbalanced
+
+Stratum 7: pID:vib_style:contrast
+
+Terms:
+                vib_style:contrast Residuals
+Sum of Squares           0.0908087 2.0199260
+Deg. of Freedom                  4        96
+
+Residual standard error: 0.1450548
+4 out of 8 effects not estimable
+Estimated effects may be unbalanced
+
+Stratum 8: pID:placement:vib_style:contrast
+
+Terms:
+                placement:vib_style:contrast Residuals
+Sum of Squares                      0.011863  2.657949
+Deg. of Freedom                            4        96
+
+Residual standard error: 0.166394
+Estimated effects may be unbalanced
+
+
+================================================================
+Pairwise comparisons using paired t tests 
+
+data:  accuracy and vib_style 
+
+      amp    ctrl  
+ctrl  0.0067 -     
+lowfi 1.0000 0.0404
+
+P value adjustment method: bonferroni 
+
+
+
+data:  accuracy and contrast 
+
+    vf      Vhl    
+Vhl 1.00000 -      
+vs  0.00012 0.00056
+
+P value adjustment method: bonferroni 
+
+
+
+data:  accuracy and placement 
+
+     hands
+neck 0.63 
+
+P value adjustment method: bonferroni 

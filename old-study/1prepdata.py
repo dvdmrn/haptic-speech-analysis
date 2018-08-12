@@ -20,13 +20,16 @@ headers = ["response", "token", "correct", "contrast", "vib_style","placement","
 def getFilesToProcess():
 	files = [] # {path, pID}
 	for d in os.walk('data'):
-		print d
 		for f in d[2]:
 			if (".csv" in f) and not (".INVALID" in f):
 				m = re.search(r'\d+', f)
-				pID = m.group(0)
+				print("m: ",m)
+				if m:
+					pID = m.group(0)
+					files.append({"path":os.path.join(d[0],f),"pID":pID})
+				else:
+					break
 				# print("FOUND: ",m.group(0),f,d[0])
-				files.append({"path":os.path.join(d[0],f),"pID":pID})
 	pp.pprint(files)
 	return files
 

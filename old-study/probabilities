@@ -1,0 +1,25 @@
+conditional probabilities:
+
+[ { 'condition': 'p(accuracy of first 5 items|ctrl vibration style)', 'value': 0.51428571428571423},
+  { 'condition': 'p(accuracy of first 5 items|amp vibration style)', 'value': 0.45000000000000001},
+  { 'condition': 'p(accuracy of first 5 items|lowfi vibration style)', 'value': 0.61428571428571421}]
+
+
+unconditional probability of correctly identifying a word for a vibration style:
+	p(ctrl) = 0.57266666666666666
+	p(amp) = 0.6206666666666667
+	p(lowfi) = 0.60866666666666669
+
+unconditional probability of correctly identifying **the first word of the experiment** for a vibration style:
+    ctrl: 0.571428571429 
+    amp: 0.75 
+    lowfi: 0.928571428571
+
+
+t-tests comparing unconditional probabilities of first stimuli vs conditional probabilities of:
+	ctr: Ttest_relResult(statistic=-0.39999999999999991, pvalue=0.70300823150376801), 
+	amp: Ttest_relResult(statistic=-1.1338934190276817, pvalue=0.33925405085645433),  
+	lowfi: Ttest_relResult(statistic=-4.3798318265965737, pvalue=0.00074483607391749541))
+
+
+

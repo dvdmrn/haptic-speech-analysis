@@ -2,4 +2,6 @@ old-study/data/*
 !old-study/data/.keep
 temporal/data/*
 !temporal/data/.keep
+training/data/*
+!training/data/.keep
 

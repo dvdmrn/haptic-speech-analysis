@@ -5,6 +5,7 @@ import re
 import pprint as pp
 
 OFFSETS = [300,200,100,50,0,-50,-100,-200,-300]
+NARROW = True
 
 '''
 creates a csv containing all average participant acc scores in the format:
@@ -38,9 +39,20 @@ def aveForOffset(offset,participantData):
 			correctResponses.append(float(row["correct"]))
 	return ave(correctResponses)
 
+def aveForContrastAndOffset(contrast,offset,participantData):
+	correctResponses = []
+	for row in participantData:
+		if (row["contrast"] == contrast) and (row["offset"] == str(offset)):
+			correctResponses.append(float(row["correct"]))
+	return ave(correctResponses)
+
+
 def writeCSV(path,rows):
 	print "----------------------\nwriting CSV: "+path
-	fieldNames = ["pID","offset","accuracy"]
+	if NARROW:
+		fieldNames = ["pID","offset","accuracy","contrast"] 
+	else:
+		fieldNames = ["pID","offset","accuracy"]
 	with open(path,"w") as csvFile:
 		writer = csv.DictWriter(csvFile,fieldnames=fieldNames)
 		writer.writeheader()
@@ -65,14 +77,23 @@ def getFilesToProcess():
 def main():
 	files = getFilesToProcess()
 	csvData = []
+	contrasts = ["vf","vs","Vhl"]
 	for f in files:
 		pdata = openCSV(f["path"])
 		print "PARTICIPANT "+f["pID"]+" ----------------------"
 		for offset in OFFSETS:
-			ave = aveForOffset(offset,pdata)
-			print(offset,ave)
-			rowToWrite = {"pID":f["pID"],"offset":str(offset),"accuracy":ave}
-			csvData.append(rowToWrite)
+			if NARROW:
+				for contrast in contrasts:
+					ave = aveForContrastAndOffset(contrast,offset,pdata)
+					print(offset,contrast,ave)
+					rowToWrite = {"pID":f["pID"],"offset":str(offset),"accuracy":ave,"contrast":contrast}
+					csvData.append(rowToWrite)
+
+			else:
+				ave = aveForOffset(offset,pdata)
+				print(offset,ave)
+				rowToWrite = {"pID":f["pID"],"offset":str(offset),"accuracy":ave}
+				csvData.append(rowToWrite)
 	writeCSV("temporal_offset_scores.csv",csvData)
 	print "----------------------\ncomplete!"
 

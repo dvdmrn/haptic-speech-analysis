@@ -48,7 +48,10 @@ def aveForCondAndContrast(contrast, cond,participantData):
 
 def writeCSV(path,rows):
 	print "----------------------\nwriting CSV: "+path
-	fieldNames = ["pID","cond","accuracy","contrast"]
+	if NARROW:
+		fieldNames = ["pID","cond","accuracy","contrast"]
+	else:
+		fieldNames = ["pID","cond","accuracy"]
 	with open(path,"w") as csvFile:
 		writer = csv.DictWriter(csvFile,fieldnames=fieldNames)
 		writer.writeheader()

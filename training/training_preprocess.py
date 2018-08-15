@@ -4,7 +4,6 @@ from numpy import average as ave
 import re
 import pprint as pp
 
-# OFFSETS = [300,200,100,50,0,-50,-100,-200,-300]
 
 '''
 creates a csv containing all average participant acc scores in the format:
@@ -20,7 +19,7 @@ n              | 0.4      | -300
 
 '''
 
-
+NARROW = True
 
 def openCSV(path):
 	participantData = []
@@ -30,14 +29,6 @@ def openCSV(path):
 	            participantData.append(row)
 	return participantData
 
-# def aveForOffset(offset,participantData):
-	# correctResponses = []
-	# for row in participantData:
-	# 	# print("looking at : ",row["offset"])
-	# 	if row["offset"] == str(offset):
-	# 		correctResponses.append(float(row["correct"]))
-	# return ave(correctResponses)
-
 def aveForCond(cond,participantData):
 	correctResponses = []
 	for row in participantData:
@@ -46,10 +37,18 @@ def aveForCond(cond,participantData):
 			correctResponses.append(float(row["correct"]))
 	return ave(correctResponses)
 
+def aveForCondAndContrast(contrast, cond,participantData):
+	correctResponses = []
+	for row in participantData:
+		if (row["contrast"] == contrast) and (row["vib_style"] == str(cond)):
+			correctResponses.append(float(row["correct"]))
+	return ave(correctResponses)
+
+
 
 def writeCSV(path,rows):
 	print "----------------------\nwriting CSV: "+path
-	fieldNames = ["pID","cond","accuracy"]
+	fieldNames = ["pID","cond","accuracy","contrast"]
 	with open(path,"w") as csvFile:
 		writer = csv.DictWriter(csvFile,fieldnames=fieldNames)
 		writer.writeheader()
@@ -78,11 +77,22 @@ def main():
 		pdata = openCSV(f["path"])
 		print "PARTICIPANT "+f["pID"]+" ----------------------"
 		for cond in ["ctrl","amp"]:
-			ave = aveForCond(cond,pdata)
-			print(cond,ave)
-			rowToWrite = {"pID":f["pID"],"cond":str(cond),"accuracy":ave}
-			csvData.append(rowToWrite)
-	writeCSV("temporal_offset_scores.csv",csvData)
+			if not NARROW:
+				# net averages for erryone
+				ave = aveForCond(cond,pdata)
+				print(cond,ave)
+				rowToWrite = {"pID":f["pID"],"cond":str(cond),"accuracy":ave}
+				csvData.append(rowToWrite)
+			else:
+				# averages for condition x contrast
+				contrasts = ["vf","vs","Vhl"]
+				for contrast in contrasts:
+					ave = aveForCondAndContrast(contrast,cond,pdata)
+					print(contrast,cond,ave)
+					rowToWrite = {"pID":f["pID"],"cond":str(cond),"accuracy":ave,"contrast":contrast}
+					csvData.append(rowToWrite)
+
+	writeCSV("training_scores.csv",csvData)
 	print "----------------------\ncomplete!"
 
 main()

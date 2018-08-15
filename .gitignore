@@ -4,4 +4,5 @@ temporal/data/*
 !temporal/data/.keep
 training/data/*
 !training/data/.keep
+*.csv
 

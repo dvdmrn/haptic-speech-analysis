@@ -19,7 +19,7 @@ n              | 0.4      | -300
 
 '''
 
-NARROW = True
+NARROW = False
 
 def openCSV(path):
 	participantData = []

@@ -6,3 +6,4 @@ training/data/*
 !training/data/.keep
 *.csv
 
+.Rproj.user

@@ -11,15 +11,6 @@ masterData = []
 '''
 creates a csv containing all average participant acc scores in the format:
 
-participant_ID | accuracy | offset
-1              | 0.5      | -300
-1              | 0.6      | -200
-...
-2              | 0.55     | -300
-2              | 0.56     | -200
-...
-n              | 0.4      | -300
-
 '''
 
 
